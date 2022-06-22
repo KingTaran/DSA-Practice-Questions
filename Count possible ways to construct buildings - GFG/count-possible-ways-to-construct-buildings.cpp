@@ -4,6 +4,8 @@ using namespace std;
 
  // } Driver Code Ends
 	long long int A[100002] ; 
+	/* DP by Aditya verma Made DP So Freaking Easy 
+	I can't imagine dp without Aditya verma */ 
 class Solution{
 	public:
 	
