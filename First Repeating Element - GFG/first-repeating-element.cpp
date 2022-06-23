@@ -6,7 +6,7 @@ using namespace std;
 
  // } Driver Code Ends
 // User function template in C++
-
+/*    Easy Peasy Lemon Squeeze     */
 class Solution {
   public:
     // Function to return the position of the first repeating element.
