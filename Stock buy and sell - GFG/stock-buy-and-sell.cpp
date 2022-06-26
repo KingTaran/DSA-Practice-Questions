@@ -11,6 +11,16 @@ using namespace std;
 class Solution{
 public:
     //Function to find the days of buying and selling stock for max profit.
+    
+    
+    
+    
+    
+    
+    
+    
+    /*This Question is same as other stock buying and Selling Question 
+    LINK  : https://practice.geeksforgeeks.org/problems/stock-buy-and-sell2615/1/*/
     vector<vector<int> > stockBuySell(vector<int> A, int n){
         // code here
         vector<pair<int,int> >ans;
