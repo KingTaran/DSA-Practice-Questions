@@ -1,5 +1,5 @@
 # Stock buy and sell
-## Medium 
+##  Medium 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">The cost of stock on each day is given in an array <strong>A</strong>[] of size <strong>N</strong>. Find all the days on which you buy and sell the stock so that in between those days your profit is maximum.<br>
 <strong>Note: </strong>There may be multiple possible solutions. Return any one of them. Any correct solution will result in an output of <strong>1</strong>, whereas wrong solutions will result in an output of <strong>0</strong>.<br>
