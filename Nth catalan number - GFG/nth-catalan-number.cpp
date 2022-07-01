@@ -10,13 +10,11 @@ using namespace std;
 //User function template for C++
 
 
-
-
 class Solution
 {
     public:
     //Function to find the nth catalan number.
-    cpp_int findCatalan(int n) 
+   cpp_int findCatalan(int n) 
    {
        if (n==0){
            return 1;
