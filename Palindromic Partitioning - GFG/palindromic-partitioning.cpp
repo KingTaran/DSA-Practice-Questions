@@ -39,7 +39,7 @@ int Solve(string &s , int i , int j ){
         // If  the element is Already Present in the Matrix, we return the  
         return t[i][j]; 
     }
-    // The main solution patiotoning Part
+    // The main solution Partitioning  Part
     int ans =INT_MAX; 
     for(int k = i ; k < j ; k++){
         int tempans = Solve(s , i , k ) + Solve(s , k + 1 , j ) + 1; 
