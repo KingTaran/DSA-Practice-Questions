@@ -6,6 +6,9 @@ using namespace std;
 
  // } Driver Code Ends
 //User function Template for C++
+// Easy Peasy Lemon Squeezee 
+// This is Not a Dynamic Programming Question 
+// I have done the same question before Link to exact Same Question : https://practice.geeksforgeeks.org/problems/minimum-number-of-jumps-1587115620/1/ 
 
 class Solution {
   public:
