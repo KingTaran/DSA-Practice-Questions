@@ -3,40 +3,37 @@
 using namespace std;
 
  // } Driver Code Ends
-
-const long long int mod = 1000000007 ;
-	long long  dp[100005]; 
 class Solution {
 	public:
-	   long long  int Helper(string &str , int pos){
-	        if(pos == str.length() )
-	        {
-	            return 1 ; 
-	        }
-	        
-	        if(str[pos] == '0'){
-	            return 0 ; 
-	        }
-	        if(dp[pos ]!= -1){
-	            return dp[pos]%mod ; 
-	        }
-	        
-	        
-	        int res = Helper(str , pos + 1); 
-	        if(pos + 1 < str.length() && (str[pos] == '1' or (str[pos] == '2'  && str[pos +1 ]<= '6')  ))    
-             {
-                 res += Helper(str, pos + 2); 
-             }	      
-             dp[pos ] = res%mod ;
-	        return res%mod ;
-	        
-	        
+	long long int t[100005] ;  
+	int helper(int i , string s ){
+	    if(s[i] == '0' ){
+	        return 0 ; 
 	    }
+	    if(t[i] != -1){
+	        return t[i]%1000000007; 
+	    }
+	    
+	    if(i >= s.size()){
+	        return 1;
+	    }
+	    if(i == s.size() -1){
+	        return 1;
+	    }
+	    if(i + 1 < s.size() && (s[i] == '1' ||(s[i]  == '2' && (s[i + 1] >= 48 && s[i+1] <=54 )))){
+	        t[i] =  helper(i + 1  ,  s) + helper(i + 2 , s); 
+	        return t[i] % 1000000007;
+	    }
+	    else{
+	        t[i] =  helper(i + 1 , s);
+	        return t[i]%1000000007;
+	    }
+	    
+	    
+	}
 		int CountWays(string str){
-		    memset(dp , -1 , sizeof(dp)); 
-		    long long int x = Helper(str , 0) ;
-		    return x%mod ;
-		    
+		    memset(t , -1 , sizeof(t)); 
+		    return helper(0 , str ) ; 
 		}
 
 };
