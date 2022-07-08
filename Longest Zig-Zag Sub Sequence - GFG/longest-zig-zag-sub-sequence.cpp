@@ -10,7 +10,7 @@ class Solution {
 		        return 1; 
 		    }
 		    int prev_diff =  nums[1] - nums[0] ; 
-		    int count = prev_diff!= 0? 2 : 1; 
+		    int count = prev_diff!= 0? 2 : 1 ; 
 		    int diff = 0 ; 
 		    for(int i =2 ; i< nums.size() ; i++){
 		        diff = nums[i] - nums[i-1] ; 
