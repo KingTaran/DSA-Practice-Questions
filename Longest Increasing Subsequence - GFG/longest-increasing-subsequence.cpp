@@ -4,6 +4,53 @@ using namespace std;
 
  // } Driver Code Ends
 
+// This is One of the base concepts of Dynamic Programming 
+/* -------------------------------------------------------------------------- */
+/*                              Question Details                              */
+/* -------------------------------------------------------------------------- */
+/**
+ * *This is one of the important  question in Dynamic Programming 
+ * * So , therefore understanding the  Concept behind this Question 
+ * *is Really important 
+ */
+// Difficulty : Medium 
+
+//  Implementation 
+// example : 
+//  n = 6 , a[] = 5 8 3 7 9 1  
+// Initally : dp[] = INT_MIN INT_MAX INT_MAX INT_MAX INT_MAX INT_MAX INT_MAX
+//                       0       1     2      3       4       5        6 
+
+// for: 
+// after i = 0 
+// Initally : dp[] = INT_MIN     5   INT_MAX INT_MAX INT_MAX INT_MAX INT_MAX
+//                       0       1     2      3       4       5        6 
+
+
+
+// after i = 1
+// Initally : dp[] = INT_MIN     5   8     INT_MAX INT_MAX INT_MAX INT_MAX
+//                       0       1     2      3       4       5        6 
+// after i = 2
+//  Initally : dp[] = INT_MIN    3    8     INT_MAX INT_MAX INT_MAX INT_MAX
+//                       0       1     2      3       4       5        6 
+ 
+ 
+// after i = 3 
+// Initally : dp[] = INT_MIN     5     7     INT_MAX INT_MAX INT_MAX INT_MAX
+//                       0       1     2      3       4       5        6 
+// after i = 4 
+// Initally : dp[] = INT_MIN     5     7     9  INT_MAX INT_MAX INT_MAX
+//                       0       1     2      3       4       5        6 
+// after i = 5 
+ 
+// Initally : dp[] = INT_MIN     1     7     9  INT_MAX INT_MAX INT_MAX
+//                       0       1     2      3       4       5        6 
+// so we return the last index whose value is not Equal to INT_MAX
+/* -------------------------------------------------------------------------- */
+/*                                Code Section                                */
+/* -------------------------------------------------------------------------- */
+
 
 class Solution
 {
