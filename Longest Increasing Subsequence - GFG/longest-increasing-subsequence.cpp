@@ -9,35 +9,30 @@ class Solution
 {
     public:
     //Function to find length of longest increasing subsequence.
-    int helper(int n , int a[]){
-        int dp[n+1]; 
+    int helper(int n  , int a[] ){
+        int dp[n+ 1 ]; 
         fill(dp , dp + n + 1 , INT_MAX); 
         dp[0] = INT_MIN ; 
-        for( int i = 0 ; i < n ; i++){
-            int idx = upper_bound(dp , dp+n + 1 , a[i]) -dp ; 
-            if(a[i] >  dp[idx-1] && a[i] < dp[idx]){
-                dp[idx] = a[i]; 
-            }
+    for(int i = 0  ; i < n ; i++){
+        int idx = upper_bound(dp ,dp + n + 1 , a[i] ) -dp; 
+        if(a[i] > dp[idx -1] && a[i] < dp[idx] ){
+            dp[idx] = a[i] ; 
         }
-        int res  = 1 ; 
-        for(int i = n ; i>=0 ; i--){
-            if(dp[i] != INT_MAX){
-                res = i ; 
-                break ; 
-            }
+    }
+    
+    for(int i = n ; i>=0  ; i --){
+        if(dp[i]!= INT_MAX ){
+            return i ; 
         }
-        return  res;
-        
     }
     
     
     
     
-    
+    }
     int longestSubsequence(int n, int a[])
     {
-       return helper(n , a); 
-       
+       return helper(n , a) ; 
     }
 };
 
