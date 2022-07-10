@@ -7,26 +7,27 @@ class Solution{
 		
 
 	public:
-	int maxSumIS(int a[], int n)  
+	int maxSumIS(int arr[], int n)  
 	{  
-	    // Your code goes here
-	    int dp[n] ;
-	    for(int  i = 0 ; i <n+1 ;i++){
-	        dp[i] = a[i]   ;
-	    } 
+	    vector<int> dp(n);
 	    for(int i = 0 ; i< n ; i++){
+	        dp[i] = arr[i] ; 
+	    }
+	    for(int i = 1 ; i< n ; i++){
 	        for(int j = 0 ; j < i ; j++){
-	            if(a[j] < a[i]){
-	                dp[i] = max(dp[i] , dp[j] + a[i]); 
+	            if(arr[j] < arr[i] ){
+	                dp[i] = max(dp[i ] , dp[j] + arr[i]); 
 	            }
 	        }
 	    }
-	    
-	    int res = 0 ; 
-	    for(int i = 0 ; i< n; i++){
-	        res = max(res  , dp[i]); 
+	    int res = INT_MIN ; 
+	    for(int i = 0 ; i< n ; i++){
+	        res = max(res , dp[i]); 
 	    }
-	    return  res ;
+	    return res ;
+	    
+	    
+	    
 	}  
 };
 
