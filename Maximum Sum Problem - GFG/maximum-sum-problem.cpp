@@ -4,6 +4,10 @@ using namespace std;
 
  // } Driver Code Ends
 class Solution
+
+//  Agar Intution Pata hai toh quesstion is very easy warna lage raho ghante bhar 
+
+
 {
     public:
         int maxSum(int n)
