@@ -15,7 +15,7 @@ class Solution{
         while(i < n-1 && j < n){
             if(arr[i] - arr[j] < k ){
                 res += arr[i] + arr[j] ;
-             i = j + 1; 
+             i = i + 2; 
              j = j + 2 ; 
                  
             }
