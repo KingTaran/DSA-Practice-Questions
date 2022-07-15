@@ -16,7 +16,7 @@ class Solution{
             if(arr[i] - arr[j] < k ){
                 res += arr[i] + arr[j] ;
              i = j + 1; 
-             j = i + 1 ; 
+             j = j + 2 ; 
                  
             }
             else{
