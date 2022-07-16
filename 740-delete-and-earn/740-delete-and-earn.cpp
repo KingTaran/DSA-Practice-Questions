@@ -1,3 +1,7 @@
+
+// This question is Solved using array Preprossing 
+// This question is marked under Dynamic Programming But i didnt find any reason to place it there
+
 class Solution {
 public:
     int deleteAndEarn(vector<int>& nums) {
