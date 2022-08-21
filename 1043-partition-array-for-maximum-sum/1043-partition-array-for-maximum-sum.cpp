@@ -12,10 +12,10 @@ public:
             }
             dp[i] = best; 
         }
-//         for(auto  x : dp ){
-//             cout<< x <<" " ; 
-//         }
         
+        for(auto x : dp ){
+            cout << x <<" "; 
+        }
         
         return dp[n] ; 
     }
