@@ -1,4 +1,6 @@
 class Solution {
+    // This Question is difficult to understand 
+    // This Question is important 
 public:
     int minTaps(int n, vector<int>& A) {
         vector<int>  dp (n + 1 , n +2); 
@@ -7,9 +9,12 @@ public:
             int left = i - A[i]; 
             int right = i + A[i] ; 
             for(int j = max(0 , left ) ; j  <= min(i + A[i ] , n ) ; j++){
-                dp[j] = min(dp[j] , dp[max(0 , i - A[i])] + 1  ); 
+                dp[j] = min(dp[j] , dp[max(0 , left )] + 1  ); 
             }
         }
+        // for(auto x  : dp){
+        //     cout<< x <<" "; 
+        // }
         return dp[n] < n +2 ?  dp[n] : -1 ; 
     }
 };
