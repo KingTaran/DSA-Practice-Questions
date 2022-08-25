@@ -1,71 +1,57 @@
-typedef long long ll;
+int mod = 1e9 + 7;
 class Solution {
 public:
-     ll mod = 1000000007;
-    ll numDecodings(string &s, int idx, int len, vector<ll> &dp){
-        if(idx == len){
-            return 1;
+    long long int func(string &s , int index ,vector<long long int> &dp  ){
+        if(index >= s.length()){
+            return 1 ; 
+        }
+        if(dp[index] != -1){
+            return dp[index]; 
         }
         
-        if(s[idx] == '0'){
-            return 0;
+        if(s[index] =='0'){
+            return dp[index] =  0 ; 
         }
-        if(dp[idx] != -1){
-            return dp[idx];
-        }
-        long long res = 0, mult = 1;
-        if(s[idx] == '*'){
-            mult = 9;
-        }
-        
-        res += mult * numDecodings(s, idx + 1, len, dp);
-        if( idx < len - 1){
+        long long int ans = func(s , index + 1 , dp) ; 
+        if(s[index] == '*'){
+            ans *= 9 ; 
             
-            char next = s[idx + 1];
-            int opts = 0;
-            if(s[idx] == '*'){
-                if(next == '*'){
-                    opts = 15;
-                }else{
-                    if(next <= '6'){
-                        opts = 2;
-                    }else{
-                        opts = 1;
-                    }
-                }
+            if(index + 1 < s.length() && s[index + 1] >= '0' && s[index+1] <= '9'){
+                ans += func(s , index + 2 , dp ); 
             }
             
-            else if( s[idx] < '3'){
-                if(next == '*'){
-                    if(s[idx] == '1'){
-                        opts = 9;
-                    }
-                    else{
-                        opts = 6;
-                    }
-                }
-                else{
-                    if(stoi(s.substr(idx, 2)) <= 26){
-                        opts = 1;
-                    }    
-                }
+            if(index + 1 < s.length()  && s[index + 1] == '*'){
+                ans += 9 *func(s, index + 2, dp ); 
             }
-            
-            
-            if(opts){
-                res += opts* numDecodings(s, idx + 2, len, dp);
+            if(index + 1 < s.length() && s[index + 1] >= '0' && s[index + 1] <= '6' )
+            {
+                ans += func(s, index + 2 ,dp ); 
             }
-            
+            if(index + 1 < s.length() && s[index + 1] =='*' ){
+                ans = ans + (6*func(s, index + 2 ,dp)); 
+            }
             
         }
-        return dp[idx]=res%(mod);
-        
+        else if(s[index] =='1' && index+1 < s.length()){
+            if(s[index + 1] >= '0' && s[index + 1] <= '9' ){
+                ans += func(s, index + 2 ,dp ); 
+            }
+            else if(s[index + 1]  == '*'){
+                ans += (9*func(s , index + 2 ,dp)); 
+            }
+        } 
+        else if(s[index] == '2' && index + 1 < s.length()){
+            if(s[index + 1] >= '0' && s[index + 1] <= '6'){
+                ans += func(s , index + 2 ,dp); 
+            }
+            else if(s[index + 1] == '*'){
+                ans += (6*func(s , index + 2 ,dp)); 
+            }
+        }
+        return dp[index] = ans%mod ; 
     }
-    
     int numDecodings(string s) {
-        
-        int len = s.length();
-        vector<ll> dp(len + 1, -1);
-        return numDecodings(s, 0, len, dp);
+          vector<long long int> dp (s.length() + 1 , -1); 
+        return func(s , 0 ,dp  ); 
     }
 };
