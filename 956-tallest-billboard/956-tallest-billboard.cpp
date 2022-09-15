@@ -1,24 +1,26 @@
-int t[21][5005] ;
-class Solution{
-    public:
-int Solve(vector<int>&A , int i , int FirstSum, int SecondSum )
-{   
-    if(i==A.size())
+class Solution {
+public:
+    int dp[21][5005]; 
+    int func(vector<int> &v , int left , int right , int i  ){
+        if(i ==  v.size() ){
+            if(left == right ){
+                return 0 ; 
+            }
+            return -1000000; 
+        }
+    
+    if(dp[i][abs(left - right)] != -1)
     {
-        if(FirstSum==SecondSum) return 0 ;
-        else return -100000;
+        return dp[i][abs(left - right)]; 
     }
-
-    if(t[i][abs(FirstSum-SecondSum)]!=-1) return t[i][abs(FirstSum-SecondSum)] ;
-    
-    return t[i][abs(FirstSum-SecondSum)] = max(A[i]+Solve(A,i+1,FirstSum+A[i],SecondSum) ,          max(A[i]+Solve(A,i+1,FirstSum,SecondSum+A[i]) , Solve(A,i+1,FirstSum,SecondSum))) ;
-    
-}
-
-int tallestBillboard(vector<int>& rods) {
-    int Sum=0 ;
-    for(auto x:rods) Sum+=x ;
-    memset(t,-1,sizeof(t)) ;
-    return Solve(rods,0,0,0)/2 ;
-}
+    return dp[i][abs(left - right)] = max(v[i] + func(v ,  left + v[i] ,  right ,  i+1  ) , max(v[i] +func(v , left ,  right+ v[i] ,  i+1  ), func(v ,  left ,  right , i+1  )));
+    }
+        
+    int tallestBillboard(vector<int>& rods) {
+        memset(dp , -1 , sizeof(dp)); 
+     int sum =  0 ; 
+        for(auto rod : rods ) { 
+            sum += rod; 
+    }
+        return func(rods , 0 , 0 , 0)/2; }
 };
