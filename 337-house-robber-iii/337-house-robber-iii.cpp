@@ -12,20 +12,25 @@
 class Solution {
 public:
     int rob(TreeNode* root) {
-       return func(root ); 
+        return func(root ) ; 
     }
-    private:
-    unordered_map<TreeNode*, int> dp;
-    int func(TreeNode *root  ){
-         if(!root) return 0;
-        
-        if(dp.count(root )  )
-        {
-            return dp[root ]; 
-        }        
-        int dontRob = func(root -> left) + func(root -> right), robRoot = root -> val;
-        if(root -> left) robRoot += func(root -> left -> left) + rob(root -> left -> right);
-        if(root -> right) robRoot += func(root -> right -> left) + func(root -> right -> right);
-        return dp[root] =  max(dontRob, robRoot);
+private : 
+    unordered_map<TreeNode* , int> dp ; 
+    int func(TreeNode *root ){
+        if(root ){
+            if(dp.count(root)){
+                return dp[root]; 
+            }
+            int donottake = func(root ->right ) + func(root ->left); 
+            int take = root ->val ; 
+            if(root ->left ){
+                take += func(root ->left ->left ) + func(root ->left ->right); 
+            }
+             if(root ->right ){
+                take += func(root ->right ->left ) + func(root ->right ->right); 
+            }
+            return dp[root] = max(take ,donottake);
+        }
+       return 0 ; 
     }
 };
