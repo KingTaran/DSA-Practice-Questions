@@ -1,3 +1,15 @@
+
+// IMPORTANT QUESTION and explaination 
+
+
+// sum - v[i] Represents the amount of profit that player1 can make 
+        // (-) sign is for the diffrence 
+        // func(v , i + 1 , j  ,sum - v[i]) represents max profit saamne wala can make offically 
+        // similarly 
+        // if player 1 chooses last element
+        // func(v , i  , j-1 , sum - v[j]) represents max profit saamne wala can make if the player one chooses last element 
+
+
 class Solution {
 public:
     int stoneGameVII(vector<int>& stones) {
