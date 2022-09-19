@@ -1,43 +1,38 @@
 class Solution {
 public:
-   
-    bool isSubsetSum(vector<int>  arr, int sum ,int n ){
-        bool dp[n + 1 ][sum + 1]; 
-        memset(dp , 0 , sizeof(dp));
-        for(int i =  0 ; i  < n+ 1   ; i++){ 
-            for(int j = 0 ; j < sum +   1; j ++){ 
-                if ( i == 0 ){
-                    dp[i][j] = 0 ; 
-                }
-                if(j == 0){
-                    dp[i][j] = 1; 
-                }
-            }
-        }
-        for(int i = 1 ; i< n + 1  ; i ++) {
-            for(int j = 1 ; j  < sum + 1 ; j++){
-                if(arr[i-1] <= j ){
-                    dp[i][j] = dp[i-1][j-arr[i-1]] || dp[i-1][j]; 
-                }
-                else{
-                    dp[i][j] = dp[i-1][j]; 
-                }
-            } 
-        }
-        return dp[n][sum]; 
-    }
-    
-    
     bool canPartition(vector<int>& nums) {
-          int sum = 0 ; 
-        for(int i = 0 ; i< nums.size() ; i++){
-            sum += nums[i]; 
-        }
+        int sum = 0 ;  
+        sum = accumulate(nums.begin() , nums.end() , sum ); 
         if(sum %2 != 0 ){
-            return false; 
+            return 0 ; 
         }
         else{
-            return isSubsetSum(nums , sum/2 , nums.size()); 
+            dp.resize(sum + 1 , vector<int> (nums.size() + 1 , -1)); 
+            return func(nums , nums.size() , sum /2); 
         }
+        
+        
+        
+    }
+private:
+    vector<vector<int>> dp ; 
+    bool func(vector<int> &v , int n , int sum ){
+        if(sum == 0 ){
+            return  1;
+        }
+        if(sum < 0 ){
+            return 0;  
+        }
+        if(n == 0 ){
+            return 0 ; 
+        }
+        if(dp[sum][n] != -1){
+            return dp[sum][n]; 
+        }
+        if(v[n-1] > sum ){
+            func(v, n - 1 , sum ); 
+        }
+        return dp[sum][n] = func(v, n - 1 , sum ) || func(v, n - 1 , sum- v[n-1] ); 
+        
     }
 };
