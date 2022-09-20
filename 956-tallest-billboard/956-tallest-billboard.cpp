@@ -2,7 +2,9 @@ class Solution {
 public:
     
     int tallestBillboard(vector<int>& rods) {
-        dp.resize(23 , vector<int> (5005 , -1)); 
+        int sum  = 0 ; 
+        sum = accumulate(rods.begin()  , rods.end() , sum ); 
+        dp.resize(rods.size()  + 1  , vector<int> (sum + 1 , -1)); 
         return func(rods , 0 , 0 , 0  )/2 ; 
     }
 private : 
