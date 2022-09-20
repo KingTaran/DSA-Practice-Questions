@@ -1,1 +1,88 @@
+// This Question is based on isSubsetSum 
 
+// So this is question is just a tricky version of isSubsetsum 
+// so lets see the difference
+//*             IN Question is isSubset sum 
+// we just sum the array and divide it by 2 and the find if a subset contain (sum / 2) value 
+// so the basic  intution of that question is (S1(Subset1) - S2(subset2) = 0 ) 
+//*              But in this Question
+// we will func the range and create an array of that range 
+//?  so whats the point behind finding the Range : 
+// if i is an Index in range array and the array given and is marked TRUE
+//* means that there must lie another value that is (sum -i )
+//? we Just reduced the solution to sum - 2 i 
+// Then we will find the max Absolute value of (sum - 2i)
+ 
+
+
+
+
+#include<iostream>
+#include<bits/stdc++.h>
+using namespace std;
+class Solution{
+
+  public:
+  
+   
+	int minDifference(int arr[], int n)  { 
+	    int sum = 0 ; 
+	    for(int i = 0 ; i < n ; i++)
+	    {
+	        sum += arr[i] ; 
+	    }
+	    dp.resize(sum + 1 , vector<int> (n + 1 , -1)); 
+	    bool range[sum + 1]; 
+	    fill(range , range + sum + 1 , 0 ) ;
+         range[0] = range[sum] = 1 ; 
+	    for(int i = 1 ; i<sum ; i++){
+	        range[i] = func(arr , n , i ); 
+	    }
+        int res = sum; 
+        for(int i = 0 ; i <=sum ; i++){
+            if(range[i] == 1 && range[sum - i ] == 1){
+                 
+                res = min(res , abs (sum - 2*i) ); 
+            }
+        }
+        return res ;
+	    
+	} 
+private : 
+   vector<vector<int>> dp ; 
+   bool func(int arr[] , int n  , int sum  ){
+       if(sum == 0 ){
+           return 1; 
+       }
+       if( n == 0 ){
+           return 0 ; 
+       }
+       if(dp[sum][n ] != -1)
+       {
+           return dp[sum][n] ; 
+       }
+       
+       if(arr[n-1] > sum ){
+           return func(arr , n -1 , sum ); 
+       }
+       
+       return dp[sum][n] = func(arr , n-1 , sum -arr[n-1] ) || func(arr , n -1 , sum ) ; 
+   }
+};
+//Driver Code
+int main()
+{
+    int n ; 
+    cin >> n ; 
+    int A[n] ; 
+    fill(A, A + n , 0 ); 
+    for(int i = 0  ;i <n ; i++){
+      cin>>A[i]; 
+    }
+   Solution obj ; 
+   int x = obj.minDifference(A , n ); 
+   cout<< x<<" "; 
+
+
+ return 0;
+}
