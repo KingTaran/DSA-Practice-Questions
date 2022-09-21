@@ -1,34 +1,29 @@
 class Solution {
 public:
-    int minDistance(string word1, string word2) {
-        return editDistance(word1 , word2); 
+    int minDistance(string x , string y) {
+        int n = x.size() + 1 ; int m = y.size() + 1 ; 
+        dp.resize( n , vector<int> (m , -1 )) ; 
+     return func(x , y , x.size()-1  , y.size() -1);    
     }
-private:
-    int editDistanceUtil(string& S1, string& S2, int i, int j, vector<vector<int>>& dp){
     
-    if(i<0)
-        return j+1;
-    if(j<0)
-        return i+1;
+    
+private : 
+    vector<vector<int>> dp  ; 
+    int func(string &s , string &p , int n , int m ){
+        if(n < 0 ){
+            return m  +1 ; 
+        }
+        if(m < 0 ){
+            return n + 1; 
+        }
+        if(dp[n][m] != -1){
+            return dp[n][m]; 
+        }
+        if(s[n] == p[m]){
+            return dp[n][m] = func(s , p , n -1 , m-1); 
+        }
+        return dp[n][m] = 1 + min(func(s , p , n-1 , m )  , min (func(s, p , n-1 , m-1) , func(s , p , n , m-1)) ); 
         
-    if(dp[i][j]!=-1) return dp[i][j];
         
-    if(S1[i]==S2[j])
-        return dp[i][j] =  0+editDistanceUtil(S1,S2,i-1,j-1,dp);
-        
-    // Minimum of three choices
-    else return dp[i][j] = 1+min(editDistanceUtil(S1,S2,i-1,j-1,dp),
-    min(editDistanceUtil(S1,S2,i-1,j,dp),editDistanceUtil(S1,S2,i,j-1,dp)));
-    
-}
-
-int editDistance(string& S1, string& S2){
-    
-    int n = S1.size();
-    int m = S2.size();
-    
-    vector<vector<int>> dp(n,vector<int>(m,-1));
-    return editDistanceUtil(S1,S2,n-1,m-1,dp);
-    
-}
+    }
 };
