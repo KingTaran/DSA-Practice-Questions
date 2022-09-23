@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool wordBreak(string s, vector<string>& wordDict) {
-     map<string , bool > m ;
+     unordered_map<string , bool > m ;
         for(auto x : wordDict){
             m[x] = 1; 
         }
@@ -11,9 +11,9 @@ public:
     
     
 private:
-    map<string , bool > dp ; 
+    unordered_map<string , bool > dp ; 
     
-int func(string s , map<string , bool > &m ){
+int func(string s , unordered_map<string , bool > &m ){
     if(m.find(s) != m.end() ) {
         return 1; 
     }
