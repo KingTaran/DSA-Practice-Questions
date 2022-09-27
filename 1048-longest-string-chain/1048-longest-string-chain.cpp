@@ -1,23 +1,20 @@
 class Solution {
 public:
+    static bool comp(string & s1 , string &s2){
+        return  s1.length() < s2.length(); 
+    }
     int longestStrChain(vector<string>& words) {
-        std::sort(words.begin(), words.end(), [](const std::string& first, const std::string& second)
-	{
-        return first.size() < second.size();
-	});
-        int res = -1 ; 
-        map<string , int> m ; 
-        for(auto  word : words){
-            int longest = 0 ; 
-            for(int i = 0 ; i <word.length(); i ++ ){
-                string sub = word.substr(0 , i ) + word.substr(i + 1); 
-                longest = max(longest ,  m[sub] + 1 ); 
-                cout<< sub <<" "; 
+        sort(words.begin() , words.end() , comp );
+         map<string , int> dp ; 
+        int res = 0 ; 
+        for(auto word : words ){
+            for(int i = 0 ; i< word.size() ; i++){
+                string pre = word.substr(0 , i) + word.substr( i+ 1); 
+                dp[word] = max(dp[word] , dp[pre] + 1 ); 
+              
             }
-            m[word] = longest ; 
-            res = max(res, longest ); 
-         
+            res  = max(res , dp[word]);
         }
-        return res ; 
+        return res ;
     }
 };
