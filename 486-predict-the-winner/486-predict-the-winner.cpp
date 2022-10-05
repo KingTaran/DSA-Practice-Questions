@@ -1,3 +1,5 @@
+// Same approach as Optimal game Strategy 
+
 class Solution {
 public:
     bool PredictTheWinner(vector<int>& nums) {
