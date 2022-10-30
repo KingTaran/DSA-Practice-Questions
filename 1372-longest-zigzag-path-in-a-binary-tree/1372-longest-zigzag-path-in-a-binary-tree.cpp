@@ -11,21 +11,21 @@
  */
 class Solution {
 public:
-    int maxStep = 0;
-    int longestZigZag(TreeNode* root) {
-        dfs(root, true, 0);
-        dfs(root, false, 0);
-        return maxStep;
+   void ziggy(TreeNode* root, int l , int r, int& ans){
+        if(!root) return;
+         ans = max(ans, l);
+         ans = max(ans, r);
+        ziggy(root->left, 0, l+1, ans);
+        
+        ziggy(root->right, r+1, 0, ans);
+        
+        return;
     }
-    void dfs(TreeNode* root, bool isLeft, int step) {
-        if (!root) return;
-        maxStep = max(maxStep, step); // update max step sofar
-        if (isLeft) {
-            dfs(root->left, false, step + 1); // keep going from root to left
-            dfs(root->right, true, 1); // restart going from root to right
-        } else {
-            dfs(root->right, true, step + 1); // keep going from root to right
-            dfs(root->left, false, 1); // restart going from root to left
-        }
+    int longestZigZag(TreeNode* root) {
+        int l=0;
+        int r=0;
+        int ans=0;
+        ziggy(root, l,r,ans);
+        return ans;
     }
 };
