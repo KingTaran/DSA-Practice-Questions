@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // FUCKING OPTIMIZATION 
     int maxArea(vector<int>& height) {
         
         
@@ -8,7 +9,12 @@ public:
         int res = 0 ; 
         while(i < j ){
             res = max(res , min(height[i] , height[j]) * (j-i) ); 
-            height[i] > height[j] ? j--: i ++ ; 
+            if(height[i] > height[j]){
+                j--; 
+            }
+            else{
+                i++; 
+            }
         }
         return res; 
     }
