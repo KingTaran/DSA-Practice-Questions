@@ -1,3 +1,9 @@
+// This question is based on greedy Algorithm 
+// This is Base Questiion for jump game other problems 
+
+
+
+
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
