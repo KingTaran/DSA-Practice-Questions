@@ -1,3 +1,9 @@
+// Yeh Question ne toh jaan hi nikal di 
+//basic equation ka khel tha x + y + z = 0 
+// x + y = z 
+// basically find -z using two pointer technique
+
+
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
